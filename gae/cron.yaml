@@ -1,0 +1,10 @@
+cron:
+#- description: starts etl for ml rol project
+#  url: /publish/cron/tie-rol-etl
+#  schedule: every 12 hours
+- description: sleep 10 seconds
+  url: /publish/cron/sleep_10
+  schedule: every 1 minutes
+- description: sleep 20 seconds
+  url: /publish/cron/sleep_20
+  schedule: every 2 minutes
