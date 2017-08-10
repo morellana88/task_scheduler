@@ -37,8 +37,8 @@ TOPIC2 = 'sleep_20'
 # get home user directory
 home_dir = expanduser('~').replace('\\', '/')
 
-script_path1 = os.path.abspath(os.path.join(os.getcwd(), 'task1.py'))
-script_path2 = os.path.abspath(os.path.join(os.getcwd(), 'task2.py'))
+script_path1 = os.path.abspath(os.path.join(os.getcwd(), 'gce/task1.py'))
+script_path2 = os.path.abspath(os.path.join(os.getcwd(), 'gce/task2.py'))
 
 #script_path = os.path.abspath(os.path.join(os.getcwd(), 'logger_sample_task.py'))
 #sample_task = "python -u %s" % script_path
