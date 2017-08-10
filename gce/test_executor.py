@@ -82,8 +82,8 @@ executor2.job_log.setLevel(logging.DEBUG)
 
 # watches indefinitely
 # executor2.watch_topic()
-t1 = Thread(target=executor1.watch_topic, args=objs)
-t2 = Thread(target=executor2.watch_topic, args=objs)
+t1 = Thread(target=executor1.watch_topic())
+t2 = Thread(target=executor2.watch_topic())
 
 t1.start()
 t2.start()
