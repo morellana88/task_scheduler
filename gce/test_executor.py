@@ -83,7 +83,7 @@ tasks = [executor1, executor2]
 # watches indefinitely
 # executor2.watch_topic()
 pool = ThreadPool(4)
-results = pool.map(Executor.watch_topic(), tasks)
+results = pool.map(Executor.watch_topic, tasks)
 pool.close()
 pool.join()
 
