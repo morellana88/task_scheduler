@@ -24,10 +24,12 @@ watch a topic and execute a command when a message is received
 import logging
 import os
 import sys
+import queue
 
 from cloud_handler import CloudLoggingHandler
 from cron_executor import Executor
 from os.path import expanduser
+from threading import  Thread
 
 PROJECT = 'ti-ca-ml-start'  # change this to match your project
 
@@ -68,7 +70,7 @@ executor1.job_log.addHandler(job_cloud_handler1)
 executor1.job_log.addHandler(ch)
 executor1.job_log.setLevel(logging.DEBUG)
 
-executor1.watch_topic()
+# executor1.watch_topic()
 
 
 job_cloud_handler2 = CloudLoggingHandler(on_gce=True, logname=executor2.subname)
@@ -77,4 +79,9 @@ executor2.job_log.addHandler(ch)
 executor2.job_log.setLevel(logging.DEBUG)
 
 # watches indefinitely
-executor2.watch_topic()
+# executor2.watch_topic()
+t1 = Thread(target=executor1.watch_topic)
+t2 = Thread(target=executor2.watch_topic)
+
+t1.start()
+t2.start()
