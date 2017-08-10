@@ -24,7 +24,7 @@ watch a topic and execute a command when a message is received
 import logging
 import os
 import sys
-import queue
+import Queue
 
 from cloud_handler import CloudLoggingHandler
 from cron_executor import Executor
@@ -35,6 +35,8 @@ PROJECT = 'ti-ca-ml-start'  # change this to match your project
 
 TOPIC1 = 'sleep_10'
 TOPIC2 = 'sleep_20'
+
+objs = Queue.Queue()
 
 # get home user directory
 home_dir = expanduser('~').replace('\\', '/')
@@ -80,8 +82,8 @@ executor2.job_log.setLevel(logging.DEBUG)
 
 # watches indefinitely
 # executor2.watch_topic()
-t1 = Thread(target=executor1.watch_topic)
-t2 = Thread(target=executor2.watch_topic)
+t1 = Thread(target=executor1.watch_topic, args=objs)
+t2 = Thread(target=executor2.watch_topic, args=objs)
 
 t1.start()
 t2.start()
