@@ -32,10 +32,10 @@ from multiprocessing import Pool
 from multiprocessing.dummy import Pool as ThreadPool
 
 PROJECT = 'ti-ca-ml-start'  # change this to match your project
-cron_entries = [('task1','sleep_10', 'gce/task1.py'), ('task2','sleep_20', 'gce/task2.py')]
 
 # get home user directory
 home_dir = expanduser('~').replace('\\', '/')
+cron_entries = [('TIE_ROL ETL','tie-rol-etl', home_dir + '/workspace/ATTRITION/bin/main/main_run.sh')]
 
 root_logger = logging.getLogger('cron_executor')
 root_logger.setLevel(logging.DEBUG)
@@ -49,9 +49,10 @@ root_logger.addHandler(ch)
 cloud_handler = CloudLoggingHandler(on_gce=True, logname="task_runner")
 root_logger.addHandler(cloud_handler)
 
+
 def create_tasks((task_name,topic_name, script_path)):
-    abs_path = os.path.abspath(os.path.join(os.getcwd(), script_path))
-    task = "python -u %s" % abs_path
+    # abs_path = os.path.abspath(os.path.join(os.getcwd(), script_path))
+    task = "sh %s" % script_path
     executor = Executor(topic_name, project=PROJECT, task_cmd=task, subname=task_name)
     job_cloud_handler = CloudLoggingHandler(on_gce=True, logname=executor.subname)
     executor.job_log.addHandler(job_cloud_handler)
