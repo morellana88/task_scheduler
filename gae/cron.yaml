@@ -1,4 +1,4 @@
 cron:
 - description: "starts ETL for TIE ROL"
-  url: /publish/cron/tie-rol-etl
+  url: /publish/cron/tie-rol-etl?name=tie_rol&command=sh&script=workspace/ATTRITION/bin/main/main_run.sh
   schedule: every day 23:30
