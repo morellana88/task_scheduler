@@ -52,7 +52,8 @@ root_logger.addHandler(cloud_handler)
 
 def create_tasks((task_name,topic_name, script_path)):
     # abs_path = os.path.abspath(os.path.join(os.getcwd(), script_path))
-    task = "sh %s" % script_path
+    # task = "sh %s" % script_path
+    task = "sh %s"
     executor = Executor(topic_name, project=PROJECT, task_cmd=task, subname=task_name)
     job_cloud_handler = CloudLoggingHandler(on_gce=True, logname=executor.subname)
     executor.job_log.addHandler(job_cloud_handler)

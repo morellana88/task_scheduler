@@ -45,10 +45,10 @@ def get_project_id():
     return app_identity.get_application_id()
 
 
-def publish_to_topic(topic, msg='', create=True):
+def publish_to_topic(topic, msg='', attributes={}, create=True):
     pubsub = get_client()
     full_name = get_full_topic_name(topic)
-    message = {"messages": [{"data": base64.b64encode(msg)}]}
+    message = {"messages": [{"data": base64.b64encode(msg)}], "attributes": [attributes]}
     try:
         pubsub.projects().topics().publish(topic=full_name,
                                            body=message).execute()
