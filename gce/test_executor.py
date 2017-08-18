@@ -35,7 +35,7 @@ PROJECT = 'ti-ca-ml-start'  # change this to match your project
 
 # get home user directory
 home_dir = expanduser('~').replace('\\', '/')
-cron_entries = [('TIE_ROL ETL','tie-rol-etl', home_dir + '/workspace/ATTRITION/bin/main/main_run.sh')]
+cron_entries = [('TIE_ROL_ETL','tie-rol-etl', home_dir + '/workspace/ATTRITION/bin/main/main_run.sh')]
 
 root_logger = logging.getLogger('cron_executor')
 root_logger.setLevel(logging.DEBUG)
